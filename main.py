@@ -17,20 +17,6 @@ def get_inputs():
     return WIDTH, ROWS, FPS
 
 
-def show_instructions():
-    show_message('Instructions', 'Click left mouse to add new cell')
-    show_message('Instructions',
-                 'Firstly the start point (Orange), then the end point (Blue), finally the barriers (Black)')
-
-    show_message('Instructions',
-                 'Click right mouse to delete specific cell')
-
-    show_message('Instructions', 'Click C to clear the grid')
-    show_message('Instructions', 'Click 1 to run BFS algorithm')
-    show_message('Instructions', 'Click 2 to run A* with Manhattan distance')
-    show_message('Instructions', 'Click 3 to run A* with Euclidean distance')
-
-
 def left_mouse_pressed(curr_cell, start_position, end_position):
     if not start_position and curr_cell != end_position:
         curr_cell.make_start()
@@ -55,7 +41,6 @@ def choose_algorithm(event, finder_context):
 
 def start():
     pygame.init()
-    # show_instructions()
     WIDTH, ROWS, FPS = get_inputs()
 
     WIN = pygame.display.set_mode((WIDTH, WIDTH))
@@ -93,6 +78,9 @@ def start():
             if event.type == KEYDOWN:
                 if not start_position or not end_position:
                     show_message('Invalid input!', 'You have to set the start and end points to run the algorithm')
+                    continue
+                valid_keys = [K_1, K_2, K_3, K_c]
+                if event.key not in valid_keys:
                     continue
 
                 if event.key == K_c:
