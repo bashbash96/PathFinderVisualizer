@@ -7,13 +7,15 @@ from WindowUtils import update_cells
 from Strategy import PathFinderStrategy
 
 
-def generate_path(WIN, wait, parent, end):
+def generate_path(parent, end):
     curr = end
-
+    path = []
     while curr:
         curr.make_path()
-        update_cells(WIN, wait, [curr])
+        path.append(curr)
         curr = parent[curr]
+
+    return path
 
 
 class BFS(PathFinderStrategy):
@@ -32,7 +34,8 @@ class BFS(PathFinderStrategy):
             curr_cell = queue.popleft()
 
             if curr_cell == end:
-                generate_path(window, wait, parent, end)
+                path_cells = generate_path(parent, end)
+                update_cells(window, wait, path_cells)
                 return True
 
             grid.update_neighbors(curr_cell)
@@ -81,10 +84,10 @@ class AStar(PathFinderStrategy):
                     return False
 
             curr_f_score, curr_cell = min_heap.get()
-            visiting.discard(curr_cell)
 
             if curr_cell == end:
-                generate_path(window, wait, parent, end)
+                path_cells = generate_path(parent, end)
+                update_cells(window, wait, path_cells)
                 return True
 
             grid.update_neighbors(curr_cell)
@@ -110,6 +113,7 @@ class AStar(PathFinderStrategy):
                         if neighbor_cell != start and neighbor_cell != end:
                             neighbor_cell.make_open()
 
+            visiting.discard(curr_cell)
             if curr_cell != start and curr_cell != end:
                 curr_cell.make_closed()
             update_cells(window, wait, [curr_cell] + neighbors)

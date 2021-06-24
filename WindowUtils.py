@@ -31,8 +31,7 @@ def update_cells(win, wait, cells):
         if cell:
             cell.draw_cell(win)
         wait()
-
-    pygame.display.update()
+        pygame.display.update()
 
 
 def get_cell_from_mouse_click(grid):
