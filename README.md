@@ -79,14 +79,14 @@ Instructions:
 
 ### Installation
 
-- Copy this link ***https://github.com/bashbash96/google-auto-complete-text.git*** then on cmd or bash do:
+- Copy this link ***https://github.com/bashbash96/PathFinderVisualizer.git*** then on cmd or bash do:
 
 		cd ~/Desktop
-		git clone {{the link you just copied}} auto-complete
+		git clone {{the link you just copied}} PathVisualizer
 
 - This creates a directory named "Project", clones the repository there and adds a remote named "origin" back to the source.
 
-		cd auto-complete
+		cd PathVisualizer
 		git checkout develop
 
 - If that last command fails
@@ -178,7 +178,7 @@ then follow the instructions in [Instructions Section](#how-to-use)
 
 GPL License
 
-Copyright (c) [2020] [Amjad Bashiti]
+Copyright (c) [2021] [Amjad Bashiti]
 
   The licenses for most software and other practical works are designed
 to take away your freedom to share and change the works.  By contrast,
